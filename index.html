@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya | Kelas XII SLTA</title>
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigasi -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Siswa<span>Kreatif</span></a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#hero" class="nav-link active">Beranda</a></li>
+                    <li><a href="#about" class="nav-link">Tentang</a></li>
+                    <li><a href="#skills" class="nav-link">Keahlian</a></li>
+                    <li><a href="#future" class="nav-link">Rencana</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Toggle Dark Mode -->
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle tema gelap/terang">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                
+                <!-- Tombol Menu Mobile -->
+                <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">Selamat Datang di Portofolioku</span>
+                <h1 class="hero-title">Halo, Saya <span class="highlight">Ahdan Mushad Zilal</span></h1>
+                <p class="hero-subtitle">Siswa Kelas <span class="class-text">XII-ITCP 1</span></p>
+                <p class="hero-motto">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <span id="typed-text"></span><span class="cursor">&nbsp;</span>
+                    <i class="fa-solid fa-quote-right"></i>
+                </p>
+                <div class="hero-cta">
+                    <a href="#about" class="btn btn-primary">Kenali Saya Lebih Jauh <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Hubungi Kontak</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <!-- Ilustrasi Profil SVG Kustom yang Modern & Responsif -->
+                    <svg class="avatar-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--accent-color);stop-opacity:1" />
+                            </linearGradient>
+                            <clipPath id="circleClip">
+                                <circle cx="100" cy="100" r="90" />
+                            </clipPath>
+                        </defs>
+                        <!-- Lingkar Latar Belakang Ornamen -->
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#avatarGrad)" stroke-width="3" stroke-dasharray="10 5" class="rotating-ring" />
+                        <circle cx="100" cy="100" r="90" fill="var(--card-bg)" />
+                        <!-- Gambar Avatar di dalam kliping lingkaran -->
+                        <g clip-path="url(#circleClip)">
+                            <!-- Latar Belakang Warna Gradasi -->
+                            <rect width="200" height="200" fill="url(#avatarGrad)" opacity="0.15" />
+                            <!-- Ornamen abstrak -->
+                            <circle cx="50" cy="50" r="30" fill="var(--primary-color)" opacity="0.1" />
+                            <circle cx="160" cy="150" r="40" fill="var(--accent-color)" opacity="0.15" />
+                            <!-- Karakter Avatar Sederhana (Stylized Student) -->
+                            <!-- Kaos/Jaket -->
+                            <path d="M50 200 C50 150, 150 150, 150 200 Z" fill="var(--primary-color)" />
+                            <!-- Kerah baju sekolah abu-abu putih -->
+                            <path d="M85 155 L100 175 L115 155 Z" fill="#ffffff" />
+                            <path d="M85 155 L100 175 L100 200 L85 200 Z" fill="#cbd5e1" opacity="0.5" />
+                            <!-- Leher -->
+                            <rect x="88" y="130" width="24" height="30" rx="5" fill="#fbcfe8" />
+                            <!-- Wajah -->
+                            <circle cx="100" cy="100" r="42" fill="#fbcfe8" />
+                            <!-- Rambut -->
+                            <path d="M56 95 C56 60, 144 60, 144 95 C135 75, 115 70, 100 75 C85 70, 65 75, 56 95 Z" fill="#1e293b" />
+                            <!-- Kacamata (Stylized) -->
+                            <circle cx="85" cy="100" r="12" fill="none" stroke="#1e293b" stroke-width="3" />
+                            <circle cx="115" cy="100" r="12" fill="none" stroke="#1e293b" stroke-width="3" />
+                            <line x1="97" y1="100" x2="103" y2="100" stroke="#1e293b" stroke-width="3" />
+                            <line x1="73" y1="100" x2="65" y2="95" stroke="#1e293b" stroke-width="3" />
+                            <line x1="127" y1="100" x2="135" y2="95" stroke="#1e293b" stroke-width="3" />
+                            <!-- Senyum -->
+                            <path d="M92 120 Q100 128 108 120" fill="none" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+                            <!-- Earphone (Aksesori Keren) -->
+                            <rect x="53" y="93" width="6" height="15" rx="3" fill="var(--accent-color)" />
+                            <rect x="141" y="93" width="6" height="15" rx="3" fill="var(--accent-color)" />
+                            <path d="M56 93 C56 45, 144 45, 144 93" fill="none" stroke="var(--accent-color)" stroke-width="3" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Saya Section -->
+    <section id="about" class="about-section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Kenalan Yuk!</span>
+                <h2 class="section-title">Tentang Saya</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-info">
+                    <h3 class="about-greeting">Senang bertemu denganmu!</h3>
+                    <p class="about-desc">
+                        Saya adalah siswa MAM 1 Karangasem Paciran Lamongan kelas XII ITCP 1 yang memiliki ketertarikan pada dunia teknologi dan IT. Saya ingin menggunakan ilmu dan kemampuan saya untuk menciptakan teknologi yang bermanfaat bagi semua orang serta menjadi seseorang yang dapat memberikan kontribusi nyata bagi masyarakat.
+                    </p>
+                    <p class="about-desc">
+                        Prestasi: Pada tahun 2026 saya memenangkan lomba ME AWARD pada kategori robotika dan mendapatkan penghargaan <strong>Gold Medal</strong>. Rencana saya selanjutnya adalah mempertimbangkan studi di bidang Bisnis Digital atau Informatika, sambil terus mengasah kemampuan di area AI dan pengembangan web.
+                    </p>
+                    <div class="personal-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div>
+                                <strong>Sekolah</strong>
+                                <p>MA Muhammadiyah 1 Paciran</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <div>
+                                <strong>Lokasi</strong>
+                                <p>Lamongan, Jawa Timur</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <div>
+                                <strong>Fokus Minat</strong>
+                                <p>Informatika & AI (Kecerdasan Buatan)</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-users"></i>
+                            <div>
+                                <strong>Kepribadian</strong>
+                                <p>Kreatif, Kolaboratif, Adaptif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats-card">
+                    <div class="stats-wrapper">
+                        <div class="stat-box">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Kelas (XII)</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Proyek Belajar</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Sertifikat Belajar</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Semangat Belajar</span>
+                        </div>
+                    </div>
+                    <div class="hobbies-box">
+                        <h4>Hobi & Aktivitas</h4>
+                        <div class="hobbies-tags">
+                            <span class="tag"><i class="fa-solid fa-bicycle"></i> Bersepeda</span>
+                            <span class="tag"><i class="fa-solid fa-gamepad"></i> Bermain Game</span>
+                            <span class="tag"><i class="fa-solid fa-robot"></i> AI & Robotika</span>
+                            <span class="tag"><i class="fa-solid fa-laptop-code"></i> Web / IT</span>
+                            <span class="tag"><i class="fa-solid fa-brain"></i> Pemanfaatan AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minat & Keahlian Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Keahlian Utama</span>
+                <h2 class="section-title">Minat & Keahlian</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Keahlian Akademik / Teknis -->
+                <div class="skills-card">
+                    <h3 class="skills-category-title"><i class="fa-solid fa-laptop-code"></i> Keahlian Teknis (IT)</h3>
+                    <p class="skills-intro">Berikut adalah tingkat penguasaan beberapa alat dan bahasa pemrograman yang terus saya pelajari:</p>
+                    
+                    <div class="skill-bars">
+                        <!-- Skill 1 -->
+                        <div class="skill-bar-item">
+                            <div class="skill-info">
+                                <span>HTML5 / CSS3</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 2 -->
+                        <div class="skill-bar-item">
+                            <div class="skill-info">
+                                <span>UI/UX Design (Figma)</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 3 -->
+                        <div class="skill-bar-item">
+                            <div class="skill-info">
+                                <span>JavaScript (Dasar)</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 4 -->
+                        <div class="skill-bar-item">
+                            <div class="skill-info">
+                                <span>Git & GitHub</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keahlian Non-Akademik / Soft Skills -->
+                <div class="skills-card">
+                    <h3 class="skills-category-title"><i class="fa-solid fa-lightbulb"></i> Bidang Minat & Soft Skills</h3>
+                    <p class="skills-intro">Selain keterampilan teknis, saya juga mengasah kemampuan interpersonal berikut:</p>
+                    
+                    <div class="soft-skills-grid">
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-icon">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div class="soft-skill-content">
+                                <h4>Komunikasi Efektif</h4>
+                                <p>Mampu menyampaikan ide dengan jelas di depan kelas maupun di dalam kelompok kerja.</p>
+                            </div>
+                        </div>
+
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-icon">
+                                <i class="fa-solid fa-puzzle-piece"></i>
+                            </div>
+                            <div class="soft-skill-content">
+                                <h4>Penyelesaian Masalah</h4>
+                                <p>Senang menganalisis kendala dan mencari solusi kreatif dengan pendekatan logis.</p>
+                            </div>
+                        </div>
+
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-icon">
+                                <i class="fa-solid fa-people-group"></i>
+                            </div>
+                            <div class="soft-skill-content">
+                                <h4>Kerjasama Tim</h4>
+                                <p>Berpengalaman memimpin dan berkolaborasi dalam berbagai proyek sekolah & organisasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rencana & Cita-cita Section -->
+    <section id="future" class="future-section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Langkah Berikutnya</span>
+                <h2 class="section-title">Rencana Masa Depan</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Tahun 2027</div>
+                    <div class="timeline-content">
+                        <h3>Lulus SLTA & Masuk Perguruan Tinggi</h3>
+                        <p>Fokus utama saya setelah lulus dari MA Muhammadiyah 1 Paciran adalah melanjutkan studi ke jenjang S1 pada jurusan <strong>Teknik Informatika / Sistem Informasi</strong> di universitas impian.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Tahun 2027 - 2031</div>
+                    <div class="timeline-content">
+                        <h3>Mengembangkan Portofolio & Magang</h3>
+                        <p>Selama kuliah, saya berencana aktif di laboratorium komputer, mengikuti kompetisi IT (Hackathon/Lomba Web), serta magang sebagai Frontend Developer di industri teknologi guna mencari pengalaman nyata.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Tahun 2031+</div>
+                    <div class="timeline-content">
+                        <h3>Karier Profesional (Full-Stack Developer)</h3>
+                        <p>Membangun karier profesional sebagai Full-Stack Developer atau UI/UX Engineer yang berfokus menciptakan aplikasi web interaktif, bermanfaat luas, dan ramah pengguna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Hubungi Saya</span>
+                <h2 class="section-title">Kontak & Media Sosial</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Info Kontak Kiri -->
+                <div class="contact-info">
+                    <h3>Mari tetap terhubung!</h3>
+                    <p>Jika ada pertanyaan, ingin berkolaborasi, atau sekadar bertukar ide, jangan ragu untuk menghubungi saya melalui kontak di bawah ini:</p>
+                    
+                    <div class="contact-list">
+                        <div class="contact-list-item">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Email Resmi</strong>
+                                <p><a href="mailto:imawardi945@gmail.com">imawardi945@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-list-item">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-map-pin"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Asal Sekolah</strong>
+                                <p>MAM 1 Paciran, Lamongan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links-box">
+                        <h4>Ikuti Sosial Media Saya</h4>
+                        <div class="social-icons">
+                            <a href="https://github.com/945-08" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://instagram.com/Mushadzz___" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Kontak Kanan -->
+                <div class="contact-form-card">
+                    <h3>Kirim Pesan</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" required placeholder="Masukkan nama kamu">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Alamat Email</label>
+                            <input type="email" id="email" required placeholder="name@domain.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan Kamu</label>
+                            <textarea id="message" rows="4" required placeholder="Tulis pesan atau masukan kamu di sini..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Kirim Pesan <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div id="formStatus" class="form-status"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+            <div class="container footer-content">
+            <p>&copy; 2026 Ahdan Mushad Zilal. Dibuat dengan <i class="fa-solid fa-heart animate-pulse"></i> untuk Tugas Informatika Kelas XII.</p>
+            <p class="school-footer">MA Muhammadiyah 1 Paciran, Lamongan, Jawa Timur.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Kembali ke atas">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
