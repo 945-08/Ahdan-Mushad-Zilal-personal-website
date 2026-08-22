@@ -169,76 +169,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const EMAILJS_SERVICE_ID = "service_portfolio";
     const EMAILJS_TEMPLATE_ID = "template_tbckx3q";
 
-   emailjs.init(EMAILJS_PUBLIC_KEY);
+ // Initialize EmailJS
+    emailjs.init(EMAILJS_PUBLIC_KEY);
 
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.innerHTML = 'Mengirim... <i class="fa-solid fa-spinner fa-spin"></i>';
-    submitBtn.disabled = true;
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Mengirim... <i class="fa-solid fa-spinner fa-spin"></i>';
+        submitBtn.disabled = true;
 
-    // Ambil data dari form
-    const name = document.getElementById('user_name').value.trim();
-    const email = document.getElementById('user_email').value.trim();
-    const message = document.getElementById('user_message').value.trim();
+        // Ambil data dari form
+        const templateParams = {
+            from_name: document.getElementById('user_name').value.trim(),
+            from_email: document.getElementById('user_email').value.trim(),
+            message: document.getElementById('user_message').value.trim(),
+            to_email: 'imawardi945@gmail.com'
+        };
 
-    // Format tanggal dengan waktu Indonesia (WIB)
-    const now = new Date();
-    const options = {
-        timeZone: 'Asia/Jakarta',
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    };
-    const formattedDate = now.toLocaleDateString('id-ID', options);
-
-    const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message,
-        to_email: 'imawardi945@gmail.com',
-        current_date: formattedDate // Kirim tanggal yang sudah diformat
-    };
-
-    if (!name || !email || !message) {
-        showStatus('Mohon isi semua kolom terlebih dahulu.', 'error');
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.disabled = false;
-        return;
-    }
-
-    // Kirim email via EmailJS
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
-            showStatus(`Terima kasih, ${name}! Pesanmu berhasil terkirim ✅`, 'success');
-            contactForm.reset();
-        })
-        .catch((error) => {
-            console.error('FAILED...', error);
-            showStatus('Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi.', 'error');
-        })
-        .finally(() => {
+        if (!templateParams.from_name || !templateParams.from_email || !templateParams.message) {
+            showStatus('Mohon isi semua kolom terlebih dahulu.', 'error');
             submitBtn.innerHTML = originalBtnText;
             submitBtn.disabled = false;
-        });
-});
+            return;
+        }
 
-function showStatus(message, type) {
-    formStatus.textContent = message;
-    formStatus.className = `form-status ${type}`;
-    formStatus.style.display = 'block';
-    setTimeout(() => {
-        formStatus.style.display = 'none';
-    }, 6000);
-}
+        // Kirim email via EmailJS
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                showStatus(`Terima kasih, ${templateParams.from_name}! Pesanmu berhasil terkirim ke imawardi945@gmail.com ✅`, 'success');
+                contactForm.reset();
+            })
+            .catch((error) => {
+                console.error('FAILED...', error);
+                showStatus('Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi.', 'error');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            });
+    });
+
+    function showStatus(message, type) {
+        formStatus.textContent = message;
+        formStatus.className = `form-status ${type}`;
+        formStatus.style.display = 'block';
+        setTimeout(() => {
+            formStatus.style.display = 'none';
+        }, 6000);
+    }
+
+});
 });
