@@ -1,34 +1,61 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================
-       1. THEME TOGGLE (DARK / LIGHT MODE)
+       1. THEME TOGGLE (DARK / LIGHT / SYSTEM)
        ========================================== */
     const themeToggleBtn = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
     const themeIcon = themeToggleBtn.querySelector('i');
 
-    // Cek preferensi tema sebelumnya dari localStorage
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    htmlElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
+    // Theme options: light, dark, system
+    let currentThemeMode = localStorage.getItem('themeMode') || 'system';
+    applyTheme(currentThemeMode);
 
     themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        htmlElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
+        // Cycle through: light -> dark -> system -> light
+        const modes = ['light', 'dark', 'system'];
+        let currentIndex = modes.indexOf(currentThemeMode);
+        currentIndex = (currentIndex + 1) % modes.length;
+        currentThemeMode = modes[currentIndex];
+        localStorage.setItem('themeMode', currentThemeMode);
+        applyTheme(currentThemeMode);
     });
 
-    function updateThemeIcon(theme) {
-        if (theme === 'dark') {
-            themeIcon.className = 'fa-solid fa-sun'; // Tampilkan ikon matahari saat dark mode
+    function applyTheme(mode) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        let theme;
+        if (mode === 'system') {
+            theme = prefersDark ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', theme);
+            updateThemeIcon('system');
         } else {
-            themeIcon.className = 'fa-solid fa-moon'; // Tampilkan ikon bulan saat light mode
+            theme = mode;
+            htmlElement.setAttribute('data-theme', theme);
+            updateThemeIcon(theme);
         }
     }
 
+    function updateThemeIcon(mode) {
+        if (mode === 'system') {
+            themeIcon.className = 'fa-solid fa-desktop';
+            themeIcon.style.fontSize = '1.1rem';
+        } else if (mode === 'dark') {
+            themeIcon.className = 'fa-solid fa-sun';
+            themeIcon.style.fontSize = '1rem';
+        } else {
+            themeIcon.className = 'fa-solid fa-moon';
+            themeIcon.style.fontSize = '1rem';
+        }
+    }
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (currentThemeMode === 'system') {
+            const theme = e.matches ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', theme);
+        }
+    });
 
     /* ==========================================
        2. MOBILE NAVBAR MENU (HAMBURGER)
@@ -42,14 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.toggle('active');
     });
 
-    // Menutup menu mobile ketika link navigasi diklik
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         });
     });
-
 
     /* ==========================================
        3. TYPING ANIMATION (HERO MOTTO)
@@ -61,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "Belajar lewat praktik dan kolaborasi",
         "Terus berkembang dan memberi kontribusi"
     ];
-    const typingSpeed = 75;    // kecepatan ketik per karakter (ms)
-    const erasingSpeed = 40;   // kecepatan hapus per karakter (ms)
-    const newWordDelay = 2000; // jeda waktu sebelum mengetik kata baru (ms)
+    const typingSpeed = 75;
+    const erasingSpeed = 40;
+    const newWordDelay = 2000;
     let wordIndex = 0;
     let charIndex = 0;
 
@@ -88,41 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Memulai efek animasi ketik pertama kali
     if (words.length) setTimeout(type, 1000);
-
-    /* ==========================================
-       3b. LOAD EXTERNAL AVATAR IF PROVIDED
-       Checks for common avatar file names under /assets and replaces the SVG.
-    ========================================== */
-    (function tryLoadAvatar() {
-        const imgPaths = ['assets/avatar.jpg', 'assets/avatar.png', 'assets/avatar.webp'];
-        const svgEl = document.querySelector('.avatar-svg');
-        if (!svgEl) return;
-
-        let loaded = false;
-        imgPaths.forEach((path) => {
-            if (loaded) return;
-            const img = new Image();
-            img.src = path;
-            img.onload = () => {
-                if (loaded) return;
-                loaded = true;
-                const imgEl = document.createElement('img');
-                imgEl.src = path;
-                imgEl.alt = 'Foto Profil';
-                imgEl.className = 'avatar-img';
-                imgEl.style.width = '100%';
-                imgEl.style.height = '100%';
-                imgEl.style.objectFit = 'cover';
-                svgEl.parentNode.replaceChild(imgEl, svgEl);
-            };
-            img.onerror = () => {
-                // ignore and try next
-            };
-        });
-    })();
-
 
     /* ==========================================
        4. SCROLL ACTIVE LINK & NAVBAR STICKY
@@ -131,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let currentSectionId = '';
-        const scrollPosition = window.scrollY + 150; // offset tinggi navbar
+        const scrollPosition = window.scrollY + 150;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -149,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
 
     /* ==========================================
        5. BACK TO TOP BUTTON
@@ -171,50 +161,67 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
     /* ==========================================
-       6. FORM HUBUNGI KONTAK (SIMULASI SEND)
+       6. EMAILJS - KIRIM PESAN KE EMAIL
        ========================================== */
+    // GANTI DENGAN PUBLIC KEY ANDA DARI EMAILJS
+    const EMAILJS_PUBLIC_KEY = "vkZ2jIeOTPM9TCJfA";
+    const EMAILJS_SERVICE_ID = "service_portfolio";
+    const EMAILJS_TEMPLATE_ID = "template_tbckx3q";
+
+    // Initialize EmailJS
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
 
     contactForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Mencegah form reload halaman
+        e.preventDefault();
 
-        // Mengambil nilai input
-        const nameInput = document.getElementById('name').value.trim();
-        const emailInput = document.getElementById('email').value.trim();
-        const messageInput = document.getElementById('message').value.trim();
-
-        if (nameInput === '' || emailInput === '' || messageInput === '') {
-            showStatus('Mohon isi semua kolom terlebih dahulu.', 'error');
-            return;
-        }
-
-        // Tampilkan animasi kirim sederhana
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Mengirim... <i class="fa-solid fa-spinner fa-spin"></i>';
         submitBtn.disabled = true;
 
-        // Menstimulasi pengiriman data (delay 1.5 detik)
-        setTimeout(() => {
+        // Ambil data dari form
+        const templateParams = {
+            from_name: document.getElementById('user_name').value.trim(),
+            from_email: document.getElementById('user_email').value.trim(),
+            message: document.getElementById('user_message').value.trim(),
+            to_email: 'imawardi945@gmail.com'
+        };
+
+        if (!templateParams.from_name || !templateParams.from_email || !templateParams.message) {
+            showStatus('Mohon isi semua kolom terlebih dahulu.', 'error');
             submitBtn.innerHTML = originalBtnText;
             submitBtn.disabled = false;
-            
-            showStatus(`Terima kasih, ${nameInput}! Pesanmu berhasil disimulasikan terkirim.`, 'success');
-            contactForm.reset(); // Reset form setelah sukses
-        }, 1500);
+            return;
+        }
+
+        // Kirim email via EmailJS
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                showStatus(`Terima kasih, ${templateParams.from_name}! Pesanmu berhasil terkirim ke imawardi945@gmail.com ✅`, 'success');
+                contactForm.reset();
+            })
+            .catch((error) => {
+                console.error('FAILED...', error);
+                showStatus('Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi.', 'error');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            });
     });
 
     function showStatus(message, type) {
         formStatus.textContent = message;
         formStatus.className = `form-status ${type}`;
-        // Pastikan status terlihat
         formStatus.style.display = 'block';
-        // Hilangkan status setelah 5 detik
         setTimeout(() => {
             formStatus.style.display = 'none';
-        }, 5000);
+        }, 6000);
     }
+
 });
