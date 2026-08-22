@@ -256,6 +256,11 @@ section {
     color: var(--primary-color);
 }
 
+/* Tambahan untuk icon desktop mode */
+.theme-btn i.fa-desktop {
+    font-size: 1.1rem;
+}
+
 /* Hamburger mobile menu */
 .hamburger {
     display: none;
@@ -646,7 +651,7 @@ section {
 
 .timeline-dot {
     position: absolute;
-    left: calc(-2rem - 9px); /* Align with the timeline border line */
+    left: calc(-2rem - 9px);
     top: 5px;
     width: 15px;
     height: 15px;
