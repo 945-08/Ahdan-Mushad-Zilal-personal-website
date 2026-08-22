@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const EMAILJS_SERVICE_ID = "service_portfolio";
     const EMAILJS_TEMPLATE_ID = "template_tbckx3q";
 
- // Initialize EmailJS
+    // Initialize EmailJS
     emailjs.init(EMAILJS_PUBLIC_KEY);
 
     const contactForm = document.getElementById('contactForm');
@@ -224,5 +224,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 6000);
     }
 
-});
 });
