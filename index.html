@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -32,8 +34,8 @@
 
             <div class="nav-actions">
                 <!-- Toggle Dark Mode -->
-                <button id="themeToggle" class="theme-btn" aria-label="Toggle tema gelap/terang">
-                    <i class="fa-solid fa-moon"></i>
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle tema" title="Klik untuk ganti mode (Light/Dark/System)">
+                    <i class="fa-solid fa-desktop"></i>
                 </button>
                 
                 <!-- Tombol Menu Mobile -->
@@ -149,11 +151,11 @@
                             <span class="stat-label">Proyek Belajar</span>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-number">3+</span>
+                            <span class="stat-number">1+</span>
                             <span class="stat-label">Sertifikat Belajar</span>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-number">100%</span>
+                            <span class="stat-number">75%</span>
                             <span class="stat-label">Semangat Belajar</span>
                         </div>
                     </div>
@@ -162,7 +164,7 @@
                         <div class="hobbies-tags">
                             <span class="tag"><i class="fa-solid fa-bicycle"></i> Bersepeda</span>
                             <span class="tag"><i class="fa-solid fa-gamepad"></i> Bermain Game</span>
-                            <span class="tag"><i class="fa-solid fa-robot"></i> AI & Robotika</span>
+                            <span class="tag"><i class="fa-solid fa-fish"></i> Memancing</span>
                             <span class="tag"><i class="fa-solid fa-laptop-code"></i> Web / IT</span>
                             <span class="tag"><i class="fa-solid fa-brain"></i> Pemanfaatan AI</span>
                         </div>
@@ -368,16 +370,16 @@
                     <h3>Kirim Pesan</h3>
                     <form id="contactForm" class="contact-form">
                         <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" required placeholder="Masukkan nama kamu">
+                            <label for="user_name">Nama Lengkap</label>
+                            <input type="text" id="user_name" required placeholder="Masukkan nama kamu">
                         </div>
                         <div class="form-group">
-                            <label for="email">Alamat Email</label>
-                            <input type="email" id="email" required placeholder="name@domain.com">
+                            <label for="user_email">Alamat Email</label>
+                            <input type="email" id="user_email" required placeholder="name@domain.com">
                         </div>
                         <div class="form-group">
-                            <label for="message">Pesan Kamu</label>
-                            <textarea id="message" rows="4" required placeholder="Tulis pesan atau masukan kamu di sini..."></textarea>
+                            <label for="user_message">Pesan Kamu</label>
+                            <textarea id="user_message" rows="4" required placeholder="Tulis pesan atau masukan kamu di sini..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Kirim Pesan <i class="fa-solid fa-paper-plane"></i></button>
                     </form>
@@ -389,7 +391,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-            <div class="container footer-content">
+        <div class="container footer-content">
             <p>&copy; 2026 Ahdan Mushad Zilal. Dibuat dengan <i class="fa-solid fa-heart animate-pulse"></i> untuk Tugas Informatika Kelas XII.</p>
             <p class="school-footer">MA Muhammadiyah 1 Paciran, Lamongan, Jawa Timur.</p>
         </div>
